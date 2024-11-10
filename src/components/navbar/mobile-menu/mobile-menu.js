@@ -1,7 +1,8 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { isStoreSelected, isCartSelected } from "utils/checkRoutes";
 function MobileMenu({ closeFn }) {
   const loc = useLocation();
+  const navigate = useNavigate();
   return (
     <div className="mobile-menu">
       <div className="mobile-menu__content">
@@ -27,7 +28,15 @@ function MobileMenu({ closeFn }) {
         >
           Cart
         </Link>
-        <button className="mobile-menu__content__btn primary">Login</button>
+        <button
+          onClick={() => {
+            navigate("/authenticate");
+            closeFn();
+          }}
+          className="mobile-menu__content__btn primary"
+        >
+          Login
+        </button>
       </div>
     </div>
   );
