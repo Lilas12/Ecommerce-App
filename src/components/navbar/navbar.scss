@@ -34,7 +34,9 @@
       &:hover {
         opacity: 1;
       }
-
+      &--cart-count {
+        padding: 0 10px 0 0;
+      }
       &--selected {
         font-weight: 600;
         opacity: 1;
@@ -45,6 +47,12 @@
     }
     &__icon {
       font-size: 25px;
+    }
+    &__cart-count {
+      border-radius: 50%;
+      background-color: $color-primary;
+      color: white;
+      padding: 5px 10px;
     }
   }
 }
