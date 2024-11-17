@@ -1,8 +1,16 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { isStoreSelected, isCartSelected } from "utils/checkRoutes";
+import { useContext } from "react";
+import { MainContext } from "utils/context";
+import { TailSpin } from "react-loader-spinner";
+import { signOutUser } from "utils/firebaseFunctions";
 function DesktopMenu() {
+  const { user, loading } = useContext(MainContext);
   const loc = useLocation();
   const navigate = useNavigate();
+  const signOut = async () => {
+    await signOutUser();
+  };
 
   return (
     <>
@@ -26,12 +34,29 @@ function DesktopMenu() {
       >
         Cart
       </Link>
-      <button
-        onClick={() => navigate("/authenticate")}
-        className="navbar__right-side__btn primary"
-      >
-        Login
-      </button>
+      {loading ? (
+        <TailSpin
+          height="30"
+          width="30"
+          color="#3b4142"
+          ariaLabel="tail-spin-loading"
+          radius="1"
+          wrapperStyle={{}}
+          wrapperClass=""
+          visible={true}
+        />
+      ) : user ? (
+        <button onClick={signOut} className="navbar__right-side__btn primary">
+          Sign Out
+        </button>
+      ) : (
+        <button
+          onClick={() => navigate("/authenticate")}
+          className="navbar__right-side__btn primary"
+        >
+          Login
+        </button>
+      )}
     </>
   );
 }
