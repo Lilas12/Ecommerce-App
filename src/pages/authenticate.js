@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import LogInForm from "components/login-form/login-form";
 import RegisterForm from "components/register-form/register-form";
 import { useState, useContext, useEffect } from "react";
